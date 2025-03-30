@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { Global } from '@emotion/react';
 import { globalStyles } from './styles/GlobalStyles';
 import Navbar from './components/Navbar';
