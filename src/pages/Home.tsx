@@ -266,7 +266,7 @@ const Home = () => {
           >
             <GlowEffect />
             <ProfilePictureContainer>
-              <ProfilePicture src="/src/assets/profile.jpeg" alt="Iris Arlint" />
+              <ProfilePicture src="/profile.jpeg" alt="Iris Arlint" />
             </ProfilePictureContainer>
           </HeroImage>
         </HeroContent>
