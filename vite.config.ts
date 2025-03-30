@@ -8,5 +8,15 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: true,
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+        assetFileNames: 'assets/[name].[hash].[ext]'
+      }
+    }
   },
+  server: {
+    port: 5173,
+    strictPort: true
+  }
 })
