@@ -39,6 +39,8 @@ const VideoPlayer = styled.video`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  position: relative;
+  z-index: 1;
 `;
 
 const GalleryItem = styled(motion.div)`
@@ -78,6 +80,8 @@ const ItemOverlay = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  pointer-events: none;
+  z-index: 2;
 `;
 
 const CategoryTabs = styled.div`
