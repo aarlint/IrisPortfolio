@@ -51,12 +51,27 @@ export const globalStyles = css`
     box-sizing: border-box;
   }
 
+  html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
   body {
     font-family: 'Inter', sans-serif;
     background: var(--background-gradient);
     color: var(--text-color);
     min-height: 100vh;
     transition: background 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+  }
+
+  #root {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
   }
 
   .glass-container {
@@ -76,26 +91,38 @@ export const globalStyles = css`
     padding: 0 20px;
   }
 
-  main {
+  .main-wrapper {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 80px;
+  }
+
+  .main-content {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px 0;
   }
 
   /* Center all page containers */
-  main > div {
+  .main-content > div {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
   }
 
   /* Center all sections within pages */
-  main > div > section {
+  .main-content > div > section {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
@@ -105,7 +132,7 @@ export const globalStyles = css`
   }
 
   /* Center all content within sections */
-  main > div > section > * {
+  .main-content > div > section > * {
     width: 100%;
     max-width: 1000px;
     margin-left: auto;
@@ -113,7 +140,7 @@ export const globalStyles = css`
   }
 
   /* Ensure grid layouts are centered */
-  main > div > div[class*="grid"] {
+  .main-content > div > div[class*="grid"] {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
@@ -159,5 +186,114 @@ export const globalStyles = css`
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  /* Mobile Responsive Styles */
+  @media (max-width: 768px) {
+    .app-container {
+      padding: 0 10px;
+    }
+
+    .main-content {
+      padding: 10px 0;
+    }
+
+    /* Adjust section padding for mobile */
+    .main-content > div > section {
+      padding: 1rem;
+    }
+
+    /* Adjust grid layouts for mobile */
+    .main-content > div > div[class*="grid"] {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    /* Adjust hero sections for mobile */
+    [class*="Hero"] {
+      flex-direction: column;
+      text-align: center;
+      gap: 2rem;
+    }
+
+    /* Adjust content sections for mobile */
+    [class*="Content"] {
+      padding: 1rem;
+    }
+
+    /* Adjust cards for mobile */
+    [class*="Card"] {
+      padding: 1rem;
+    }
+
+    /* Adjust headings for mobile */
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+    }
+
+    /* Adjust text for mobile */
+    p {
+      font-size: 1rem;
+    }
+
+    /* Adjust buttons for mobile */
+    button {
+      padding: 0.8em 1.5em;
+      font-size: 1rem;
+    }
+
+    /* Adjust form elements for mobile */
+    input, textarea {
+      font-size: 16px; /* Prevent zoom on iOS */
+      padding: 0.8rem;
+    }
+
+    /* Adjust tables for mobile */
+    table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    /* Adjust spacing for mobile */
+    .section-title {
+      margin-bottom: 1.5rem;
+    }
+
+    /* Adjust container padding for mobile */
+    .container {
+      padding: 0 1rem;
+    }
+  }
+
+  /* Small mobile devices */
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 2rem;
+    }
+
+    h2 {
+      font-size: 1.75rem;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+    }
+
+    .app-container {
+      padding: 0 5px;
+    }
+
+    .main-content > div > section {
+      padding: 0.5rem;
+    }
   }
 `; 

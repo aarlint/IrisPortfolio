@@ -142,10 +142,21 @@ const SocialLink = styled(motion.a)`
 `;
 
 const Contact = () => {
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted');
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const subject = formData.get('subject') as string;
+    const message = formData.get('message') as string;
+    
+    const mailtoLink = `mailto:iarlint79@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+    )}`;
+    
+    window.location.href = mailtoLink;
   };
 
   return (
@@ -163,19 +174,19 @@ const Contact = () => {
           <ContactForm onSubmit={handleSubmit}>
             <FormGroup>
               <Label htmlFor="name">Name</Label>
-              <Input type="text" id="name" required />
+              <Input type="text" id="name" name="name" required />
             </FormGroup>
             <FormGroup>
               <Label htmlFor="email">Email</Label>
-              <Input type="email" id="email" required />
+              <Input type="email" id="email" name="email" required />
             </FormGroup>
             <FormGroup>
               <Label htmlFor="subject">Subject</Label>
-              <Input type="text" id="subject" required />
+              <Input type="text" id="subject" name="subject" required />
             </FormGroup>
             <FormGroup>
               <Label htmlFor="message">Message</Label>
-              <TextArea id="message" required />
+              <TextArea id="message" name="message" required />
             </FormGroup>
             <SubmitButton
               type="submit"
@@ -237,8 +248,8 @@ const Contact = () => {
               <InfoText>
                 For direct inquiries, you can reach me at:
                 <br />
-                <a href="mailto:contact@iris.arlint.dev" style={{ color: 'var(--primary-color)' }}>
-                  contact@iris.arlint.dev
+                <a href="mailto:iarlint79@gmail.com" style={{ color: 'var(--primary-color)' }}>
+                  iarlint79@gmail.com
                 </a>
               </InfoText>
             </InfoCard>

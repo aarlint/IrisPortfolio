@@ -86,14 +86,15 @@ const About = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <p>
-              As a junior libero at my high school, I've dedicated myself to mastering the art of defense in volleyball. 
-              My journey began three years ago when I first discovered my passion for the sport. Since then, I've worked 
-              tirelessly to develop my skills and become a reliable defensive specialist for my team.
+              I am Iris Arlint, a high school junior (class of 2026) from Missoula, Montana. Standing at 5'4", 
+              I specialize as a Libero (L) and Defensive Specialist (DS) in volleyball. Currently, I play for 
+              Zootown Volleyball Club 18 Platinum, where I joined in December 2024.
             </p>
             <p>
               My role as a libero has taught me the importance of quick thinking, precise movements, and effective 
               communication on the court. I take pride in my ability to read the game and make split-second decisions 
-              that can turn the tide of a match.
+              that can turn the tide of a match. My defensive skills and serve receive abilities are key strengths 
+              that I continue to develop.
             </p>
           </StoryText>
           <AchievementList
@@ -106,28 +107,28 @@ const About = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.6 }}
             >
-              Team Captain 2023
+              State Championship Final Game 2024
             </AchievementItem>
             <AchievementItem
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.7 }}
             >
-              Best Libero Award - Regional Tournament
+              Club Tournament Participant 2025
             </AchievementItem>
             <AchievementItem
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.8 }}
             >
-              Academic All-State Team
+              Power Scrimmage Participant 2025
             </AchievementItem>
             <AchievementItem
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.9 }}
             >
-              School Record for Digs in a Season
+              State Championship and Divisional Tournaments 2024
             </AchievementItem>
           </AchievementList>
         </ContentGrid>

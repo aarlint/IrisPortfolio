@@ -106,7 +106,7 @@ const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Libero • High School Junior • Volleyball Athlete
+            Libero • Class of 2026 • Zootown Volleyball Club 18 Platinum
           </HeroSubtitle>
         </HeroContent>
         <HeroImage
@@ -122,24 +122,24 @@ const Home = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <StatNumber>3</StatNumber>
-          <StatLabel>Years Experience</StatLabel>
+          <StatNumber>18</StatNumber>
+          <StatLabel>Club Team</StatLabel>
         </StatCard>
         <StatCard
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
         >
-          <StatNumber>500+</StatNumber>
-          <StatLabel>Digs</StatLabel>
+          <StatNumber>2026</StatNumber>
+          <StatLabel>Graduation Year</StatLabel>
         </StatCard>
         <StatCard
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1 }}
         >
-          <StatNumber>95%</StatNumber>
-          <StatLabel>Serve Receive</StatLabel>
+          <StatNumber>5'4"</StatNumber>
+          <StatLabel>Height</StatLabel>
         </StatCard>
       </StatsGrid>
     </HomeContainer>

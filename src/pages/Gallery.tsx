@@ -1,7 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 import { FaVolleyballBall, FaVideo } from 'react-icons/fa';
+import recruitingProfile from '../assets/Iris Arlints Volleyball Recruiting Profile FieldLevel.mp4';
+import stateChampionship from '../assets/Watch State Championship Final Game 2024 - Iris Arlints Volleyba.mp4';
 
 const GalleryContainer = styled.div`
   min-height: 100vh;
@@ -33,6 +35,12 @@ const GalleryGrid = styled.div`
   padding: 1rem;
 `;
 
+const VideoPlayer = styled.video`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
 const GalleryItem = styled(motion.div)`
   position: relative;
   border-radius: 15px;
@@ -45,6 +53,10 @@ const GalleryItem = styled(motion.div)`
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  &:hover video {
+    transform: scale(1.05);
   }
 `;
 
@@ -91,40 +103,62 @@ const Tab = styled.button<{ active: boolean }>`
 `;
 
 const Gallery = () => {
-  const categories = ['All', 'Photos', 'Videos', 'Highlights'];
+  const categories = ['All', 'Game Footage', 'Highlights', 'Tournaments'];
   const [activeCategory, setActiveCategory] = React.useState('All');
 
   // Mock data for gallery items
   const galleryItems = [
     {
       id: 1,
-      type: 'photo',
+      type: 'video',
       image: 'https://placehold.co/600x600',
-      title: 'Game-winning Dig',
-      category: 'Photos'
+      videoUrl: recruitingProfile,
+      title: 'Volleyball Recruiting Profile',
+      category: 'Highlights'
     },
     {
       id: 2,
       type: 'video',
       image: 'https://placehold.co/600x600',
-      title: 'Match Highlights',
-      category: 'Videos'
+      videoUrl: stateChampionship,
+      title: 'State Championship Final Game 2024',
+      category: 'Game Footage'
     },
     {
       id: 3,
-      type: 'photo',
+      type: 'video',
       image: 'https://placehold.co/600x600',
-      title: 'Team Celebration',
-      category: 'Photos'
+      title: 'Club Tournament Highlights 2025',
+      category: 'Tournaments'
     },
     {
       id: 4,
       type: 'video',
       image: 'https://placehold.co/600x600',
-      title: 'Best Saves',
+      title: 'Power Scrimmage 2025',
+      category: 'Game Footage'
+    },
+    {
+      id: 5,
+      type: 'video',
+      image: 'https://placehold.co/600x600',
+      title: 'Defensive Highlights',
       category: 'Highlights'
     },
-    // Add more items as needed
+    {
+      id: 6,
+      type: 'video',
+      image: 'https://placehold.co/600x600',
+      title: 'Serve Receive Highlights',
+      category: 'Highlights'
+    },
+    {
+      id: 7,
+      type: 'video',
+      image: 'https://placehold.co/600x600',
+      title: 'State Championship 2024',
+      category: 'Tournaments'
+    }
   ];
 
   const filteredItems = activeCategory === 'All' 
@@ -162,7 +196,16 @@ const Gallery = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <ItemImage src={item.image} alt={item.title} />
+              {item.type === 'video' ? (
+                <VideoPlayer
+                  src={item.videoUrl}
+                  poster={item.image}
+                  controls
+                  preload="metadata"
+                />
+              ) : (
+                <ItemImage src={item.image} alt={item.title} />
+              )}
               <ItemOverlay>
                 {item.type === 'photo' ? <FaVolleyballBall /> : <FaVideo />}
                 {item.title}

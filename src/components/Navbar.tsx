@@ -10,7 +10,7 @@ const Nav = styled.nav`
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 99999;
 `;
 
 const NavContainer = styled.div`
@@ -108,11 +108,37 @@ const MobileMenu = styled(motion.div)`
     top: 0;
     right: 0;
     bottom: 0;
-    width: 250px;
-    background: var(--glass-bg);
+    width: 80%;
+    max-width: 300px;
+    background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 2rem;
-    gap: 1rem;
+    gap: 1.5rem;
+    z-index: 9999;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    border-left: 1px solid var(--glass-border);
+
+    [data-theme='dark'] & {
+      background: rgba(26, 26, 26, 0.5);
+    }
+  }
+`;
+
+const MobileOverlay = styled(motion.div)`
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: 9998;
   }
 `;
 
@@ -120,8 +146,34 @@ const MobileNavLink = styled(Link)<{ active: boolean }>`
   color: ${props => props.active ? 'var(--primary-color)' : 'var(--text-color)'};
   text-decoration: none;
   font-size: 1.2rem;
-  padding: 0.5rem 0;
+  padding: 0.8rem 0;
   font-weight: ${props => props.active ? '600' : '400'};
+  border-bottom: 1px solid var(--glass-border);
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: var(--primary-color);
+    padding-left: 0.5rem;
+    background: var(--glass-bg);
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+  }
+`;
+
+const MobileMenuHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--glass-border);
+`;
+
+const MobileLogo = styled(Link)`
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-color);
+  text-decoration: none;
 `;
 
 const Navbar = () => {
@@ -149,45 +201,16 @@ const Navbar = () => {
   };
 
   return (
-    <Nav className="glass-container">
-      <NavContainer>
-        <Logo to="/">Iris Arlint</Logo>
-        <NavLinks>
-          <NavLink to="/" active={location.pathname === '/'}>Home</NavLink>
-          <NavLink to="/about" active={location.pathname === '/about'}>About</NavLink>
-          <NavLink to="/stats" active={location.pathname === '/stats'}>Stats</NavLink>
-          <NavLink to="/gallery" active={location.pathname === '/gallery'}>Gallery</NavLink>
-          <NavLink to="/contact" active={location.pathname === '/contact'}>Contact</NavLink>
-          <ThemeToggle
-            onClick={toggleTheme}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            {isDarkMode ? <FaSun /> : <FaMoon />}
-          </ThemeToggle>
-        </NavLinks>
-        <MobileMenuButton
-          onClick={toggleMobileMenu}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
-        </MobileMenuButton>
-      </NavContainer>
-
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <MobileMenu
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 20 }}
-          >
-            <MobileNavLink to="/" active={location.pathname === '/'}>Home</MobileNavLink>
-            <MobileNavLink to="/about" active={location.pathname === '/about'}>About</MobileNavLink>
-            <MobileNavLink to="/stats" active={location.pathname === '/stats'}>Stats</MobileNavLink>
-            <MobileNavLink to="/gallery" active={location.pathname === '/gallery'}>Gallery</MobileNavLink>
-            <MobileNavLink to="/contact" active={location.pathname === '/contact'}>Contact</MobileNavLink>
+    <>
+      <Nav className="glass-container">
+        <NavContainer>
+          <Logo to="/">Iris Arlint</Logo>
+          <NavLinks>
+            <NavLink to="/" active={location.pathname === '/'}>Home</NavLink>
+            <NavLink to="/about" active={location.pathname === '/about'}>About</NavLink>
+            <NavLink to="/stats" active={location.pathname === '/stats'}>Stats</NavLink>
+            <NavLink to="/gallery" active={location.pathname === '/gallery'}>Gallery</NavLink>
+            <NavLink to="/contact" active={location.pathname === '/contact'}>Contact</NavLink>
             <ThemeToggle
               onClick={toggleTheme}
               whileHover={{ scale: 1.1 }}
@@ -195,10 +218,59 @@ const Navbar = () => {
             >
               {isDarkMode ? <FaSun /> : <FaMoon />}
             </ThemeToggle>
-          </MobileMenu>
+          </NavLinks>
+          <MobileMenuButton
+            onClick={toggleMobileMenu}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
+          </MobileMenuButton>
+        </NavContainer>
+      </Nav>
+
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <>
+            <MobileOverlay
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={toggleMobileMenu}
+            />
+            <MobileMenu
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 20 }}
+            >
+              <MobileMenuHeader>
+                <MobileLogo to="/">Iris Arlint</MobileLogo>
+                <MobileMenuButton
+                  onClick={toggleMobileMenu}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <FaTimes />
+                </MobileMenuButton>
+              </MobileMenuHeader>
+              <MobileNavLink to="/" active={location.pathname === '/'}>Home</MobileNavLink>
+              <MobileNavLink to="/about" active={location.pathname === '/about'}>About</MobileNavLink>
+              <MobileNavLink to="/stats" active={location.pathname === '/stats'}>Stats</MobileNavLink>
+              <MobileNavLink to="/gallery" active={location.pathname === '/gallery'}>Gallery</MobileNavLink>
+              <MobileNavLink to="/contact" active={location.pathname === '/contact'}>Contact</MobileNavLink>
+              <ThemeToggle
+                onClick={toggleTheme}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                {isDarkMode ? <FaSun /> : <FaMoon />}
+              </ThemeToggle>
+            </MobileMenu>
+          </>
         )}
       </AnimatePresence>
-    </Nav>
+    </>
   );
 };
 
