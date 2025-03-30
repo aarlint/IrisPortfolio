@@ -4,6 +4,10 @@ import { motion } from 'framer-motion';
 import { FaVolleyballBall, FaVideo } from 'react-icons/fa';
 import recruitingProfile from '../assets/Iris Arlints Volleyball Recruiting Profile FieldLevel.mp4';
 import stateChampionship from '../assets/Watch State Championship Final Game 2024 - Iris Arlints Volleyba.mp4';
+import powerScrimmageDigs from '../assets/Watch Digs from Power Scrimmage - Iris Arlints Volleyball Videos.mp4';
+import clubTournament from '../assets/Watch HIGHLIGHTS club tourney 2025 - Iris Arlints Volleyball Vid.mp4';
+import digs from '../assets/Watch Digs - Iris Arlints Volleyball Videos FieldLevel.mp4';
+import digs2 from '../assets/Watch Digs - Iris Arlints Volleyball Videos FieldLevel-01.mp4';
 
 const GalleryContainer = styled.div`
   min-height: 100vh;
@@ -132,36 +136,33 @@ const Gallery = () => {
       id: 3,
       type: 'video',
       image: 'https://placehold.co/600x600',
-      title: 'Club Tournament Highlights 2025',
-      category: 'Tournaments'
+      videoUrl: powerScrimmageDigs,
+      title: 'Digs from Power Scrimmage',
+      category: 'Highlights'
     },
     {
       id: 4,
       type: 'video',
       image: 'https://placehold.co/600x600',
-      title: 'Power Scrimmage 2025',
-      category: 'Game Footage'
+      videoUrl: clubTournament,
+      title: 'Club Tournament Highlights 2025',
+      category: 'Tournaments'
     },
     {
       id: 5,
       type: 'video',
       image: 'https://placehold.co/600x600',
-      title: 'Defensive Highlights',
+      videoUrl: digs,
+      title: 'Digs Highlights',
       category: 'Highlights'
     },
     {
       id: 6,
       type: 'video',
       image: 'https://placehold.co/600x600',
-      title: 'Serve Receive Highlights',
+      videoUrl: digs2,
+      title: 'Digs Highlights 2',
       category: 'Highlights'
-    },
-    {
-      id: 7,
-      type: 'video',
-      image: 'https://placehold.co/600x600',
-      title: 'State Championship 2024',
-      category: 'Tournaments'
     }
   ];
 

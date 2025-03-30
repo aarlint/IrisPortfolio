@@ -56,14 +56,14 @@ export const globalStyles = css`
     width: 100%;
     margin: 0;
     padding: 0;
+    background: transparent;
   }
 
   body {
     font-family: 'Inter', sans-serif;
-    background: var(--background-gradient);
     color: var(--text-color);
     min-height: 100vh;
-    transition: background 0.3s ease, color 0.3s ease;
+    transition: color 0.3s ease;
     overflow-x: hidden;
   }
 
@@ -98,7 +98,7 @@ export const globalStyles = css`
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding-top: 80px;
+    padding-top: 60px;
   }
 
   .main-content {

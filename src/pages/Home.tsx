@@ -10,10 +10,10 @@ const HomeContainer = styled.div`
 
 const HeroSection = styled.section`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 4rem;
-  margin-bottom: 4rem;
+  margin-bottom: 6rem;
   padding: 2rem;
   border-radius: 20px;
   background: var(--glass-bg);
@@ -24,6 +24,9 @@ const HeroSection = styled.section`
 
 const HeroContent = styled.div`
   flex: 1;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
 `;
 
 const HeroTitle = styled(motion.h1)`
@@ -40,31 +43,97 @@ const HeroSubtitle = styled(motion.p)`
 `;
 
 const HeroImage = styled(motion.div)`
-  flex: 1;
-  max-width: 500px;
-  height: 400px;
-  background: var(--glass-bg);
-  border-radius: 20px;
-  overflow: hidden;
+  width: 250px;
+  height: 250px;
   position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+`;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-    opacity: 0.1;
+const ProfilePictureContainer = styled.div`
+  position: relative;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  padding: 8px;
+  background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+  animation: rotate 5s linear infinite;
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
+`;
+
+const ProfilePicture = styled.img`
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--glass-bg);
+  transform: rotate(0deg);
+  animation: counter-rotate 5s linear infinite;
+
+  @keyframes counter-rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(-360deg);
+    }
+  }
+`;
+
+const GlowEffect = styled.div`
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--primary-color-rgb), 0.2) 0%, rgba(var(--primary-color-rgb), 0) 70%);
+  filter: blur(20px);
+  z-index: -1;
+`;
+
+const ContentGrid = styled.div`
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+`;
+
+const ContentSection = styled(motion.div)`
+  padding: 1.5rem;
+  border-radius: 15px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(4px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+`;
+
+const SectionTitle = styled.h2`
+  font-size: 1.4rem;
+  color: var(--text-color);
+  margin-bottom: 0.8rem;
+`;
+
+const SectionContent = styled.p`
+  font-size: 1rem;
+  color: var(--text-color);
+  opacity: 0.8;
+  line-height: 1.5;
 `;
 
 const StatsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-top: 4rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
 `;
 
 const StatCard = styled(motion.div)`
@@ -74,7 +143,6 @@ const StatCard = styled(motion.div)`
   backdrop-filter: blur(4px);
   border: 1px solid var(--glass-border);
   box-shadow: var(--glass-shadow);
-  text-align: center;
 `;
 
 const StatNumber = styled.h3`
@@ -94,33 +162,81 @@ const Home = () => {
     <HomeContainer>
       <HeroSection>
         <HeroContent>
-          <HeroTitle
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+          <div>
+            <HeroTitle
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              Iris Arlint
+            </HeroTitle>
+            <HeroSubtitle
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              Libero • Class of 2026 • Zootown Volleyball Club 18 Platinum
+            </HeroSubtitle>
+          </div>
+
+          <HeroImage
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
           >
-            Iris Arlint
-          </HeroTitle>
-          <HeroSubtitle
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Libero • Class of 2026 • Zootown Volleyball Club 18 Platinum
-          </HeroSubtitle>
+            <GlowEffect />
+            <ProfilePictureContainer>
+              <ProfilePicture src="/src/assets/profile.jpeg" alt="Iris Arlint" />
+            </ProfilePictureContainer>
+          </HeroImage>
+
+          <ContentGrid>
+            <ContentSection
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              <SectionTitle>About Me</SectionTitle>
+              <SectionContent>
+                Passionate libero with a strong defensive mindset and excellent court awareness. Committed to continuous improvement and team success.
+              </SectionContent>
+            </ContentSection>
+
+            <ContentSection
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+            >
+              <SectionTitle>Achievements</SectionTitle>
+              <SectionContent>
+                • 2023 Montana State Championship Runner-up
+                • 2023 AAU Nationals Qualifier
+                • Multiple tournament MVP awards
+              </SectionContent>
+            </ContentSection>
+
+            <ContentSection
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1 }}
+            >
+              <SectionTitle>Skills</SectionTitle>
+              <SectionContent>
+                • Exceptional serve receive
+                • Strong defensive positioning
+                • Quick lateral movement
+                • Effective communication
+              </SectionContent>
+            </ContentSection>
+          </ContentGrid>
         </HeroContent>
-        <HeroImage
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        />
       </HeroSection>
 
       <StatsGrid>
         <StatCard
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          transition={{ duration: 0.6, delay: 1.2 }}
         >
           <StatNumber>18</StatNumber>
           <StatLabel>Club Team</StatLabel>
@@ -128,7 +244,7 @@ const Home = () => {
         <StatCard
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
+          transition={{ duration: 0.6, delay: 1.4 }}
         >
           <StatNumber>2026</StatNumber>
           <StatLabel>Graduation Year</StatLabel>
@@ -136,7 +252,7 @@ const Home = () => {
         <StatCard
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1 }}
+          transition={{ duration: 0.6, delay: 1.6 }}
         >
           <StatNumber>5'4"</StatNumber>
           <StatLabel>Height</StatLabel>
