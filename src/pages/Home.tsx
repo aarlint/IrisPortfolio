@@ -125,6 +125,10 @@ const ContentGrid = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-bottom: 2em;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const ContentSection = styled(motion.div)`
@@ -154,6 +158,10 @@ const StatsGrid = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 3rem;
   margin-bottom: 2em;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const StatCard = styled(motion.div)`
