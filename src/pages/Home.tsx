@@ -354,7 +354,7 @@ const Home = () => {
           <LinkCardIcon>
             <FaImages />
           </LinkCardIcon>
-          <LinkCardTitle>Photo Gallery</LinkCardTitle>
+          <LinkCardTitle>Media Gallery</LinkCardTitle>
           <LinkCardDescription>View highlights and memorable moments from matches and tournaments</LinkCardDescription>
         </LinkCard>
 
