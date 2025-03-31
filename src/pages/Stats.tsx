@@ -7,6 +7,7 @@ const StatsContainer = styled.div`
   padding: 6rem 2rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  scroll-margin-top: 80px;
 `;
 
 const StatsSection = styled.section`
@@ -221,7 +222,7 @@ const Stats = () => {
   };
 
   return (
-    <StatsContainer>
+    <StatsContainer id="stats">
       <StatsSection>
         <SectionTitle
           initial={{ opacity: 0, y: 20 }}

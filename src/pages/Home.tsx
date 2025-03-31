@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
-import { motion } from 'framer-motion';
+import { motion, useScroll } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 const HomeContainer = styled.div`
   min-height: 100vh;
@@ -7,6 +8,8 @@ const HomeContainer = styled.div`
   margin-bottom: 20em;
   max-width: 1200px;
   margin: 0 auto;
+  scroll-margin-top: 80px;
+  position: relative;
 `;
 
 const HeroSection = styled.section`
@@ -212,6 +215,7 @@ const LinkCard = styled(motion.a)`
   text-decoration: none;
   color: var(--text-color);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 
   &:hover {
     transform: translateY(-5px);
@@ -237,9 +241,69 @@ const LinkCardDescription = styled.p`
   text-align: center;
 `;
 
+const ScrollIndicator = styled(motion.div)`
+  position: fixed;
+  bottom: 5rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  color: var(--text-color);
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+  width: 100%;
+  text-align: center;
+
+  &:hover {
+    opacity: 1;
+  }
+`;
+
+const ScrollArrow = styled(motion.div)`
+  width: 30px;
+  height: 30px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    margin-top: 4px;
+  }
+`;
+
 const Home = () => {
+  const { scrollY } = useScroll();
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = scrollY.onChange((latest) => {
+      setIsVisible(latest < 100);
+    });
+
+    return () => unsubscribe();
+  }, [scrollY]);
+
+  const handleScrollDown = () => {
+    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <HomeContainer>
+    <HomeContainer id="home">
       <HeroSection>
         <HeroContent>
           <div>
@@ -314,7 +378,7 @@ const Home = () => {
         </ContentSection>
       </ContentGrid>
 
-      <StatsGrid>
+      {/* <StatsGrid>
         <StatCard
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -339,11 +403,15 @@ const Home = () => {
           <StatNumber>5'4"</StatNumber>
           <StatLabel>Height</StatLabel>
         </StatCard>
-      </StatsGrid>
+      </StatsGrid> */}
 
       <LinkCardsGrid>
         <LinkCard
-          href="/#/gallery"
+          href="#gallery"
+          onClick={(e) => {
+            e.preventDefault();
+            document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' });
+          }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.8 }}
@@ -354,7 +422,11 @@ const Home = () => {
         </LinkCard>
 
         <LinkCard
-          href="/#/stats"
+          href="#stats"
+          onClick={(e) => {
+            e.preventDefault();
+            document.getElementById('stats')?.scrollIntoView({ behavior: 'smooth' });
+          }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 2 }}
@@ -365,7 +437,11 @@ const Home = () => {
         </LinkCard>
 
         <LinkCard
-          href="/#/contact"
+          href="#contact"
+          onClick={(e) => {
+            e.preventDefault();
+            document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+          }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 2.2 }}
@@ -375,6 +451,24 @@ const Home = () => {
           <LinkCardDescription>Get in touch for recruitment inquiries or collaboration opportunities</LinkCardDescription>
         </LinkCard>
       </LinkCardsGrid>
+
+      <ScrollIndicator
+        onClick={handleScrollDown}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: isVisible ? 0.7 : 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <ScrollArrow
+          animate={{
+            y: [0, 8, 0],
+          }}
+          transition={{
+            duration: 1.5,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+      </ScrollIndicator>
     </HomeContainer>
   );
 };

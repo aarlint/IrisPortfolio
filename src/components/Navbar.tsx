@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaSun, FaMoon, FaBars, FaTimes } from 'react-icons/fa';
@@ -21,12 +20,13 @@ const NavContainer = styled.div`
   align-items: center;
 `;
 
-const Logo = styled(Link)`
+const Logo = styled.a`
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--text-color);
   text-decoration: none;
   transition: color 0.3s ease;
+  cursor: pointer;
 
   &:hover {
     color: var(--primary-color);
@@ -43,12 +43,13 @@ const NavLinks = styled.div`
   }
 `;
 
-const NavLink = styled(Link)<{ active: boolean }>`
+const NavLink = styled.a<{ active: boolean }>`
   color: ${props => props.active ? 'var(--primary-color)' : 'var(--text-color)'};
   text-decoration: none;
   font-weight: ${props => props.active ? '600' : '400'};
   position: relative;
   padding: 0.5rem 0;
+  cursor: pointer;
 
   &::after {
     content: '';
@@ -142,7 +143,7 @@ const MobileOverlay = styled(motion.div)`
   }
 `;
 
-const MobileNavLink = styled(Link)<{ active: boolean }>`
+const MobileNavLink = styled.a<{ active: boolean }>`
   color: ${props => props.active ? 'var(--primary-color)' : 'var(--text-color)'};
   text-decoration: none;
   font-size: 1.2rem;
@@ -150,6 +151,7 @@ const MobileNavLink = styled(Link)<{ active: boolean }>`
   font-weight: ${props => props.active ? '600' : '400'};
   border-bottom: 1px solid var(--glass-border);
   transition: all 0.3s ease;
+  cursor: pointer;
 
   &:hover {
     color: var(--primary-color);
@@ -169,17 +171,18 @@ const MobileMenuHeader = styled.div`
   border-bottom: 1px solid var(--glass-border);
 `;
 
-const MobileLogo = styled(Link)`
+const MobileLogo = styled.a`
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--text-color);
   text-decoration: none;
+  cursor: pointer;
 `;
 
 const Navbar = () => {
-  const location = useLocation();
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -187,6 +190,25 @@ const Navbar = () => {
       setIsDarkMode(savedTheme === 'dark');
       document.documentElement.setAttribute('data-theme', savedTheme);
     }
+
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'stats', 'gallery', 'contact'];
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { top, bottom } = element.getBoundingClientRect();
+          if (top <= 100 && bottom > 100) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const toggleTheme = () => {
@@ -200,17 +222,25 @@ const Navbar = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setIsMobileMenuOpen(false);
+    }
+  };
+
   return (
     <>
       <Nav className="glass-container">
         <NavContainer>
-          <Logo to="/">Iris Arlint</Logo>
+          <Logo onClick={() => scrollToSection('home')}>Iris Arlint</Logo>
           <NavLinks>
-            <NavLink to="/" active={location.pathname === '/'}>Home</NavLink>
-            <NavLink to="/about" active={location.pathname === '/about'}>About</NavLink>
-            <NavLink to="/stats" active={location.pathname === '/stats'}>Stats</NavLink>
-            <NavLink to="/gallery" active={location.pathname === '/gallery'}>Gallery</NavLink>
-            <NavLink to="/contact" active={location.pathname === '/contact'}>Contact</NavLink>
+            <NavLink onClick={() => scrollToSection('home')} active={activeSection === 'home'}>Home</NavLink>
+            <NavLink onClick={() => scrollToSection('about')} active={activeSection === 'about'}>About</NavLink>
+            <NavLink onClick={() => scrollToSection('stats')} active={activeSection === 'stats'}>Stats</NavLink>
+            <NavLink onClick={() => scrollToSection('gallery')} active={activeSection === 'gallery'}>Gallery</NavLink>
+            <NavLink onClick={() => scrollToSection('contact')} active={activeSection === 'contact'}>Contact</NavLink>
             <ThemeToggle
               onClick={toggleTheme}
               whileHover={{ scale: 1.1 }}
@@ -245,7 +275,7 @@ const Navbar = () => {
               transition={{ type: 'spring', damping: 20 }}
             >
               <MobileMenuHeader>
-                <MobileLogo to="/">Iris Arlint</MobileLogo>
+                <MobileLogo onClick={() => scrollToSection('home')}>Iris Arlint</MobileLogo>
                 <MobileMenuButton
                   onClick={toggleMobileMenu}
                   whileHover={{ scale: 1.1 }}
@@ -254,11 +284,11 @@ const Navbar = () => {
                   <FaTimes />
                 </MobileMenuButton>
               </MobileMenuHeader>
-              <MobileNavLink to="/" active={location.pathname === '/'}>Home</MobileNavLink>
-              <MobileNavLink to="/about" active={location.pathname === '/about'}>About</MobileNavLink>
-              <MobileNavLink to="/stats" active={location.pathname === '/stats'}>Stats</MobileNavLink>
-              <MobileNavLink to="/gallery" active={location.pathname === '/gallery'}>Gallery</MobileNavLink>
-              <MobileNavLink to="/contact" active={location.pathname === '/contact'}>Contact</MobileNavLink>
+              <MobileNavLink onClick={() => scrollToSection('home')} active={activeSection === 'home'}>Home</MobileNavLink>
+              <MobileNavLink onClick={() => scrollToSection('about')} active={activeSection === 'about'}>About</MobileNavLink>
+              <MobileNavLink onClick={() => scrollToSection('stats')} active={activeSection === 'stats'}>Stats</MobileNavLink>
+              <MobileNavLink onClick={() => scrollToSection('gallery')} active={activeSection === 'gallery'}>Gallery</MobileNavLink>
+              <MobileNavLink onClick={() => scrollToSection('contact')} active={activeSection === 'contact'}>Contact</MobileNavLink>
               <ThemeToggle
                 onClick={toggleTheme}
                 whileHover={{ scale: 1.1 }}

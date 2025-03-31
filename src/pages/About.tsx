@@ -6,6 +6,7 @@ const AboutContainer = styled.div`
   padding: 6rem 2rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  scroll-margin-top: 80px;
 `;
 
 const AboutSection = styled.section`
@@ -70,7 +71,7 @@ const AchievementItem = styled(motion.li)`
 
 const About = () => {
   return (
-    <AboutContainer>
+    <AboutContainer id="about">
       <AboutSection>
         <SectionTitle
           initial={{ opacity: 0, y: 20 }}

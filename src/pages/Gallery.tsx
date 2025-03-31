@@ -14,6 +14,7 @@ const GalleryContainer = styled.div`
   padding: 6rem 2rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  scroll-margin-top: 80px;
 `;
 
 const GallerySection = styled.section`
@@ -171,7 +172,7 @@ const Gallery = () => {
     : galleryItems.filter(item => item.category === activeCategory);
 
   return (
-    <GalleryContainer>
+    <GalleryContainer id="gallery">
       <GallerySection>
         <SectionTitle
           initial={{ opacity: 0, y: 20 }}

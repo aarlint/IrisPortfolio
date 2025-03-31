@@ -59,12 +59,17 @@ export const globalStyles = css`
     background: transparent;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     font-family: 'Inter', sans-serif;
     color: var(--text-color);
     min-height: 100vh;
     transition: color 0.3s ease;
     overflow-x: hidden;
+    scroll-behavior: smooth;
   }
 
   #root {
@@ -113,15 +118,21 @@ export const globalStyles = css`
     padding: 20px 0;
   }
 
-  /* Center all page containers */
+  /* Section spacing */
   .main-content > div {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 4rem;
   }
 
-  /* Center all sections within pages */
+  /* Last section should not have bottom margin */
+  .main-content > div:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Center all page containers */
   .main-content > div > section {
     width: 100%;
     max-width: 1200px;

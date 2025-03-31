@@ -8,6 +8,7 @@ const ContactContainer = styled.div`
   padding: 6rem 2rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  scroll-margin-top: 80px;
 `;
 
 const ContactSection = styled.section`
@@ -160,7 +161,7 @@ const Contact = () => {
   };
 
   return (
-    <ContactContainer>
+    <ContactContainer id="contact">
       <ContactSection>
         <SectionTitle
           initial={{ opacity: 0, y: 20 }}
