@@ -1,8 +1,11 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
-import { statsData, GameStats } from '../data/stats';
+import { 
+  LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, 
+  ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar
+} from 'recharts';
+import { statsData } from '../data/stats';
 
 const StatsContainer = styled.div`
   min-height: 100vh;
@@ -260,7 +263,7 @@ const Stats = () => {
                     dataKey="year" 
                     stroke="var(--text-color)"
                     tick={{ fill: 'var(--text-color)' }}
-                    tickFormatter={(value) => value.split('-')[0]}
+                    tickFormatter={(value: string) => value.split('-')[0]}
                     height={40}
                   />
                   <YAxis 
@@ -276,7 +279,7 @@ const Stats = () => {
                       color: 'var(--text-color)'
                     }}
                     labelStyle={{ color: 'var(--text-color)' }}
-                    labelFormatter={(value) => `Season ${value}`}
+                    labelFormatter={(value: string) => `Season ${value}`}
                   />
                   <Line 
                     type="monotone" 
@@ -301,7 +304,7 @@ const Stats = () => {
                     dataKey="year" 
                     stroke="var(--text-color)"
                     tick={{ fill: 'var(--text-color)' }}
-                    tickFormatter={(value) => value.split('-')[0]}
+                    tickFormatter={(value: string) => value.split('-')[0]}
                     height={40}
                   />
                   <YAxis 
@@ -317,7 +320,7 @@ const Stats = () => {
                       color: 'var(--text-color)'
                     }}
                     labelStyle={{ color: 'var(--text-color)' }}
-                    labelFormatter={(value) => `Season ${value}`}
+                    labelFormatter={(value: string) => `Season ${value}`}
                   />
                   <Bar 
                     dataKey="serviceAces" 
@@ -340,7 +343,7 @@ const Stats = () => {
                     dataKey="year"
                     stroke="var(--text-color)"
                     tick={{ fill: 'var(--text-color)' }}
-                    tickFormatter={(value) => value.split('-')[0]}
+                    tickFormatter={(value: string) => value.split('-')[0]}
                   />
                   <PolarRadiusAxis 
                     stroke="var(--text-color)"

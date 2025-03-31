@@ -156,38 +156,6 @@ const SectionContent = styled.p`
   line-height: 1.5;
 `;
 
-const StatsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3rem;
-  margin-bottom: 2em;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const StatCard = styled(motion.div)`
-  padding: 2rem;
-  border-radius: 20px;
-  background: var(--glass-bg);
-  backdrop-filter: blur(4px);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
-`;
-
-const StatNumber = styled.h3`
-  font-size: 2.5rem;
-  color: var(--primary-color);
-  margin-bottom: 0.5rem;
-`;
-
-const StatLabel = styled.p`
-  font-size: 1.1rem;
-  color: var(--text-color);
-  opacity: 0.8;
-`;
-
 const LinkCardsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -377,33 +345,6 @@ const Home = () => {
           </SectionContent>
         </ContentSection>
       </ContentGrid>
-
-      {/* <StatsGrid>
-        <StatCard
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.2 }}
-        >
-          <StatNumber>18</StatNumber>
-          <StatLabel>Club Team</StatLabel>
-        </StatCard>
-        <StatCard
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.4 }}
-        >
-          <StatNumber>2026</StatNumber>
-          <StatLabel>Graduation Year</StatLabel>
-        </StatCard>
-        <StatCard
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.6 }}
-        >
-          <StatNumber>5'4"</StatNumber>
-          <StatLabel>Height</StatLabel>
-        </StatCard>
-      </StatsGrid> */}
 
       <LinkCardsGrid>
         <LinkCard
