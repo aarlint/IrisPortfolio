@@ -1,6 +1,10 @@
 import styled from '@emotion/styled';
 import { motion, useScroll } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { FaVolleyballBall, FaTrophy, FaUserGraduate, FaEnvelope, FaChartBar, FaImages, FaChevronDown } from 'react-icons/fa';
+import { BiSolidMedal } from 'react-icons/bi';
+import { MdSportsVolleyball } from 'react-icons/md';
+import GlowingHR from '../components/GlowingHR';
 
 const HomeContainer = styled.div`
   min-height: 100vh;
@@ -106,22 +110,6 @@ const GlowEffect = styled.div`
   z-index: -1;
 `;
 
-const GlowingHR = styled.hr`
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    var(--primary-color) 20%,
-    var(--primary-color) 80%,
-    transparent 100%
-  );
-  border: none;
-  margin: 2em 0;
-  position: relative;
-  box-shadow: 0 0 20px var(--primary-color);
-  opacity: 0.5;
-`;
-
 const ContentGrid = styled.div`
   grid-column: 1 / -1;
   display: grid;
@@ -147,6 +135,9 @@ const SectionTitle = styled.h2`
   font-size: 1.4rem;
   color: var(--text-color);
   margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 `;
 
 const SectionContent = styled.p`
@@ -192,9 +183,12 @@ const LinkCard = styled(motion.a)`
 `;
 
 const LinkCardIcon = styled.div`
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 1rem;
   color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const LinkCardTitle = styled.h3`
@@ -242,15 +236,9 @@ const ScrollArrow = styled(motion.div)`
   position: relative;
   overflow: hidden;
 
-  &::before {
-    content: '';
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    border-right: 2px solid currentColor;
-    border-bottom: 2px solid currentColor;
-    transform: rotate(45deg);
-    margin-top: 4px;
+  svg {
+    width: 16px;
+    height: 16px;
   }
 `;
 
@@ -312,7 +300,9 @@ const Home = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <SectionTitle>About Me</SectionTitle>
+          <SectionTitle>
+            <FaUserGraduate /> About Me
+          </SectionTitle>
           <SectionContent>
             Passionate libero with a strong defensive mindset and excellent court awareness. Committed to continuous improvement and team success.
           </SectionContent>
@@ -323,7 +313,9 @@ const Home = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
         >
-          <SectionTitle>Achievements</SectionTitle>
+          <SectionTitle>
+            <FaTrophy /> Achievements
+          </SectionTitle>
           <SectionContent>
             • 2023 Montana State Championship Runner-up
             • 2023 AAU Nationals Qualifier
@@ -336,7 +328,9 @@ const Home = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1 }}
         >
-          <SectionTitle>Skills</SectionTitle>
+          <SectionTitle>
+            <MdSportsVolleyball /> Skills
+          </SectionTitle>
           <SectionContent>
             • Exceptional serve receive
             • Strong defensive positioning
@@ -357,7 +351,9 @@ const Home = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.8 }}
         >
-          <LinkCardIcon>📸</LinkCardIcon>
+          <LinkCardIcon>
+            <FaImages />
+          </LinkCardIcon>
           <LinkCardTitle>Photo Gallery</LinkCardTitle>
           <LinkCardDescription>View highlights and memorable moments from matches and tournaments</LinkCardDescription>
         </LinkCard>
@@ -372,7 +368,9 @@ const Home = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 2 }}
         >
-          <LinkCardIcon>📊</LinkCardIcon>
+          <LinkCardIcon>
+            <FaChartBar />
+          </LinkCardIcon>
           <LinkCardTitle>Statistics</LinkCardTitle>
           <LinkCardDescription>Detailed performance metrics and achievements throughout my volleyball career</LinkCardDescription>
         </LinkCard>
@@ -387,7 +385,9 @@ const Home = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 2.2 }}
         >
-          <LinkCardIcon>✉️</LinkCardIcon>
+          <LinkCardIcon>
+            <FaEnvelope />
+          </LinkCardIcon>
           <LinkCardTitle>Contact</LinkCardTitle>
           <LinkCardDescription>Get in touch for recruitment inquiries or collaboration opportunities</LinkCardDescription>
         </LinkCard>
@@ -408,7 +408,9 @@ const Home = () => {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-        />
+        >
+          <FaChevronDown />
+        </ScrollArrow>
       </ScrollIndicator>
     </HomeContainer>
   );

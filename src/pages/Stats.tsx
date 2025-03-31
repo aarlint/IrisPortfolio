@@ -6,6 +6,7 @@ import {
   ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar
 } from 'recharts';
 import { statsData } from '../data/stats';
+import GlowingHR from '../components/GlowingHR';
 
 const StatsContainer = styled.div`
   min-height: 100vh;
@@ -193,22 +194,6 @@ const ComparisonLabel = styled.div`
   color: var(--text-color);
   opacity: 0.9;
   text-align: center;
-`;
-
-const GlowingHR = styled.hr`
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    var(--primary-color) 20%,
-    var(--primary-color) 80%,
-    transparent 100%
-  );
-  border: none;
-  margin: 2em 0;
-  position: relative;
-  box-shadow: 0 0 20px var(--primary-color);
-  opacity: 0.5;
 `;
 
 const Stats = () => {
