@@ -145,6 +145,18 @@ const SectionContent = styled.p`
   color: var(--text-color);
   opacity: 0.8;
   line-height: 1.5;
+  margin: 0;
+  padding: 0;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+  }
 `;
 
 const LinkCardsGrid = styled.div`
@@ -317,9 +329,11 @@ const Home = () => {
             <FaTrophy /> Achievements
           </SectionTitle>
           <SectionContent>
-            • 2023 Montana State Championship Runner-up
-            • 2023 AAU Nationals Qualifier
-            • Multiple tournament MVP awards
+            <ul>
+              <li>2023 Montana State Championship Runner-up</li>
+              <li>2023 AAU Nationals Qualifier</li>
+              <li>Multiple tournament MVP awards</li>
+            </ul>
           </SectionContent>
         </ContentSection>
 
@@ -332,10 +346,12 @@ const Home = () => {
             <MdSportsVolleyball /> Skills
           </SectionTitle>
           <SectionContent>
-            • Exceptional serve receive
-            • Strong defensive positioning
-            • Quick lateral movement
-            • Effective communication
+            <ul>
+              <li>Exceptional serve receive</li>
+              <li>Strong defensive positioning</li>
+              <li>Quick lateral movement</li>
+              <li>Effective communication</li>
+            </ul>
           </SectionContent>
         </ContentSection>
       </ContentGrid>
