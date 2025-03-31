@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import { FaVolleyballBall, FaVideo, FaImage } from 'react-icons/fa';
+import { FaVideo } from 'react-icons/fa';
 import recruitingProfile from '../assets/Iris Arlints Volleyball Recruiting Profile FieldLevel.mp4';
 import powerScrimmageDigs from '../assets/Watch Digs from Power Scrimmage - Iris Arlints Volleyball Videos.mp4';
 import clubTournament from '../assets/Watch HIGHLIGHTS club tourney 2025 - Iris Arlints Volleyball Vid.mp4';
@@ -66,13 +66,6 @@ const GalleryItem = styled(motion.div)`
   }
 `;
 
-const ItemImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-`;
-
 const ItemOverlay = styled.div`
   position: absolute;
   bottom: 0;
@@ -108,16 +101,6 @@ const Tab = styled.button<{ active: boolean }>`
     background: var(--primary-color);
     color: white;
   }
-`;
-
-const ScreenshotPlaceholder = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-  opacity: 0.8;
 `;
 
 const Gallery = () => {

@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
 import { motion, useScroll } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { FaVolleyballBall, FaTrophy, FaUserGraduate, FaEnvelope, FaChartBar, FaImages, FaChevronDown } from 'react-icons/fa';
-import { BiSolidMedal } from 'react-icons/bi';
+import { FaTrophy, FaUserGraduate, FaEnvelope, FaChartBar, FaImages, FaChevronDown } from 'react-icons/fa';
 import { MdSportsVolleyball } from 'react-icons/md';
 import GlowingHR from '../components/GlowingHR';
 
